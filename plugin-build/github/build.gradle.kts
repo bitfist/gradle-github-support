@@ -1,4 +1,5 @@
-import git.semver.plugin.gradle.PrintTask
+import git.semver.plugin.gradle.GitSemverPluginExtension
+import git.semver.plugin.gradle.ReleaseTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -6,6 +7,7 @@ plugins {
     kotlin("jvm")
     `java-gradle-plugin`
 	`maven-publish`
+	jacoco
 	alias(libs.plugins.semver)
 }
 
@@ -47,6 +49,13 @@ tasks.test {
 	}
 }
 
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
+	reports {
+		csv.required = true
+	}
+}
+
 gradlePlugin {
     website.set("https://github.com/bitfist/github-support")
     vcsUrl.set("https://github.com/bitfist/github-support")
@@ -84,3 +93,5 @@ publishing {
 		}
 	}
 }
+
+tasks.register<ReleaseTask>("release", ReleaseTask::class.java, extensions.getByType<GitSemverPluginExtension>())
