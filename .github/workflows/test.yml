@@ -7,14 +7,22 @@ on:
       - 'plugin-build/*.gradle.kts'
       - 'plugin-build/github/src/**'
       - 'plugin-build/github/*.gradle.kts'
-      - 'gradle/libs.versions.toml'
+      - 'plugin-build/gradle/**'
+      - 'plugin-build/gradlew*'
+      - 'gradle/**'
+      - 'gradlew*'
       - '*.gradle.kts'
   pull_request:
     branches: [ "main" ]
     paths:
       - '.github/**'
-      - 'src/**'
-      - 'gradle/libs.versions.toml'
+      - 'plugin-build/*.gradle.kts'
+      - 'plugin-build/github/src/**'
+      - 'plugin-build/github/*.gradle.kts'
+      - 'plugin-build/gradle/**'
+      - 'plugin-build/gradlew*'
+      - 'gradle/**'
+      - 'gradlew*'
       - '*.gradle.kts'
 
 env:
