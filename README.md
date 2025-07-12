@@ -22,21 +22,21 @@ And using the Gradle plugin DSL in `settings.gradle.kts`:
 
 ```kotlin
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        maven {
+	repositories {
+		gradlePluginPortal()
+		maven {
 			name = "github-support"
 			url = uri("https://maven.pkg.github.com/bitfist/github-support")
 			credentials {
 				username = "<username>"
-				password = "<password>"
+				password = "<token>"
 			}
 		}
-    }
-    plugins {
-        id("io.github.bitfist.github.release") version "<version>"
-        id("io.github.bitfist.github.repository") version "<version>"
-    }
+	}
+	plugins {
+		id("io.github.bitfist.github.release") version "<version>"
+		id("io.github.bitfist.github.repository") version "<version>"
+	}
 }
 ```
 
@@ -60,17 +60,15 @@ Configure the `gitHubRepositories` extension:
 
 ```kotlin
 gitHubRepositories {
-    defaultUser.set("USERNAME")    // Default GitHub user for all repos (optional)
-    defaultToken.set("ACCESS_KEY") // Default token for all repos (optional)
+	defaultUser.set("USERNAME")    // Default GitHub user for all repos (optional)
+	defaultToken.set("ACCESS_KEY") // Default token for all repos (optional)
 
-    mavenRepositories {
-        mavenRepository {
-            repository.set("OWNER/REPO") // GitHub Maven repository
-            user.set("USERNAME")         // Repo-specific user (optional)
-            token.set("ACCESS_KEY")      // Repo-specific token (optional)
-        }
-        // Add more repositories as needed...
-    }
+	mavenRepositories.repository {
+		repository.set("OWNER/REPO") // GitHub Maven repository
+		user.set("USERNAME")         // Repo-specific user (optional)
+		token.set("ACCESS_KEY")      // Repo-specific token (optional)
+		// Add more repositories as needed...
+	}
 }
 ```
 
