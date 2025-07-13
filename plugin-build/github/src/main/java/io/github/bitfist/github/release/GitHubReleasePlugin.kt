@@ -35,11 +35,9 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 
 	private fun configureJava(project: Project) {
 		project.pluginManager.apply("java")
-		if (!project.pluginManager.hasPlugin("java-gradle-plugin")) {
-			project.extensions.getByType(JavaPluginExtension::class.java).apply {
-				withJavadocJar()
-				withSourcesJar()
-			}
+		project.extensions.getByType(JavaPluginExtension::class.java).apply {
+			withJavadocJar()
+			withSourcesJar()
 		}
 	}
 
@@ -180,7 +178,6 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 		}
 		if (project.pluginManager.hasPlugin("java-gradle-plugin")) {
 			publishing.publications.register("pluginMaven", MavenPublication::class.java) { publication ->
-				publication.from(project.components.getByName("java"))
 				configurePublication(publication, extension)
 			}
 		} else {
