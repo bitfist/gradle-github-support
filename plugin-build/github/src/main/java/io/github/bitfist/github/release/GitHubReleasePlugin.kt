@@ -177,7 +177,8 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 			}
 		}
 		if (project.pluginManager.hasPlugin("java-gradle-plugin")) {
-			publishing.publications.named("pluginMaven", MavenPublication::class.java) { publication ->
+			publishing.publications.register("pluginMaven", MavenPublication::class.java) { publication ->
+				publication.from(project.components.getByName("java"))
 				configurePublication(publication, extension)
 			}
 		} else {
