@@ -25,10 +25,12 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 		val extension = project.extensions.create("gitHubRelease", GitHubReleaseExtension::class.java, project)
 
 		configureJava(project)
-		configureSemanticVersioning(project, extension)
 		configureJaCoCo(project)
-		configurePublication(project, extension)
-		configureCopyLicenseTask(project, extension)
+		project.afterEvaluate {
+			configureSemanticVersioning(project, extension)
+			configurePublication(project, extension)
+			configureCopyLicenseTask(project, extension)
+		}
 	}
 
 	private fun configureJava(project: Project) {
@@ -156,34 +158,32 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 
 	private fun configurePublication(project: Project, extension: GitHubReleaseExtension) {
 		project.pluginManager.apply("maven-publish")
-		project.afterEvaluate {
-			val publishing = project.extensions.getByType(PublishingExtension::class.java)
-			publishing.repositories { repositories ->
-				repositories.maven { repository ->
-					repository.name = "GitHubPackages"
+		val publishing = project.extensions.getByType(PublishingExtension::class.java)
+		publishing.repositories { repositories ->
+			repositories.maven { repository ->
+				repository.name = "GitHubPackages"
 
-					if (extension.repository.isPresent) {
-						repository.url = URI("https://maven.pkg.github.com/${extension.repository.get()}")
+				if (extension.repository.isPresent) {
+					repository.url = URI("https://maven.pkg.github.com/${extension.repository.get()}")
+				}
+				repository.credentials { credentials ->
+					if (extension.user.isPresent) {
+						credentials.username = extension.user.get()
 					}
-					repository.credentials { credentials ->
-						if (extension.user.isPresent) {
-							credentials.username = extension.user.get()
-						}
-						if (extension.token.isPresent) {
-							credentials.password = extension.token.get()
-						}
+					if (extension.token.isPresent) {
+						credentials.password = extension.token.get()
 					}
 				}
 			}
-			if (project.pluginManager.hasPlugin("java-gradle-plugin")) {
-				publishing.publications.named("pluginMaven", MavenPublication::class.java) { publication ->
-					configurePublication(publication, extension)
-				}
-			} else {
-				publishing.publications.register("mavenJava", MavenPublication::class.java) { publication ->
-					publication.from(project.components.getByName("java"))
-					configurePublication(publication, extension)
-				}
+		}
+		if (project.pluginManager.hasPlugin("java-gradle-plugin")) {
+			publishing.publications.named("pluginMaven", MavenPublication::class.java) { publication ->
+				configurePublication(publication, extension)
+			}
+		} else {
+			publishing.publications.register("mavenJava", MavenPublication::class.java) { publication ->
+				publication.from(project.components.getByName("java"))
+				configurePublication(publication, extension)
 			}
 		}
 	}

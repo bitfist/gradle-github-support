@@ -34,7 +34,7 @@ class GitHubReleasePluginTest {
 	@Test
 	@DisplayName("🛠️ Java, Sources and Javadoc jars configured")
 	fun `java plugin configured`() {
-		val project: Project = ProjectBuilder.builder().build()
+		val project: ProjectInternal = ProjectBuilder.builder().build() as ProjectInternal
 		project.pluginManager.apply(GitHubReleasePlugin::class.java)
 
 		// Verify Java plugin is applied
@@ -50,8 +50,10 @@ class GitHubReleasePluginTest {
 	@Test
 	@DisplayName("🚀 Semantic versioning, JaCoCo and publishing plugins applied")
 	fun `semantic and publishing plugins configured`() {
-		val project: Project = ProjectBuilder.builder().build()
+		val project: ProjectInternal = ProjectBuilder.builder().build() as ProjectInternal
 		project.pluginManager.apply(GitHubReleasePlugin::class.java)
+
+		project.evaluate()
 
 		// Verify semantic versioning plugin
 		assertTrue(project.plugins.hasPlugin("com.github.jmongard.git-semver-plugin"),
