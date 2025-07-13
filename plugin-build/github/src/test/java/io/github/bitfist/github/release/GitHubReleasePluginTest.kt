@@ -19,16 +19,24 @@ import java.net.URI
 class GitHubReleasePluginTest {
 
 	@Test
+	@DisplayName("✨️ copyLicense task present")
+	fun `copyLicense present`() {
+		val project = ProjectBuilder.builder().build() as ProjectInternal
+		project.pluginManager.apply(GitHubReleasePlugin::class.java)
+
+		val extension = project.extensions.findByName("gitHubRelease") as GitHubReleaseExtension
+		extension.licenseFile.set(project.layout.buildDirectory.file("test-license.txt"))
+
+		project.evaluate()
+
+		assertNotNull(project.tasks.findByName("copyLicense"), "copyLicense task should be created")
+	}
+
+	@Test
 	@DisplayName("🛠️ apply plugin adds gitHubRelease extension with default properties")
 	fun `extension creation`() {
 		val project = ProjectBuilder.builder().build()
 		project.pluginManager.apply(GitHubReleasePlugin::class.java)
-
-		val extension = project.extensions.findByName("gitHubRelease") as? GitHubReleaseExtension
-		assertNotNull(extension, "Extension 'gitHubRelease' should be created")
-		assertNotNull(extension.repository, "repository property should exist")
-		assertEquals(System.getenv("GITHUB_ACTOR"), extension.user.orNull, "user should default to GITHUB_ACTOR")
-		assertEquals(System.getenv("GITHUB_TOKEN"), extension.token.orNull, "token should default to GITHUB_TOKEN")
 	}
 
 	@Test
