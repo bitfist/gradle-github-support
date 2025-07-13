@@ -35,9 +35,11 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 
 	private fun configureJava(project: Project) {
 		project.pluginManager.apply("java")
-		project.extensions.getByType(JavaPluginExtension::class.java).apply {
-			withJavadocJar()
-			withSourcesJar()
+		if (!project.pluginManager.hasPlugin("java-gradle-plugin")) {
+			project.extensions.getByType(JavaPluginExtension::class.java).apply {
+				withJavadocJar()
+				withSourcesJar()
+			}
 		}
 	}
 
