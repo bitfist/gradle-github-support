@@ -82,8 +82,8 @@ gradlePlugin {
 	vcsUrl.set("https://github.com/$repository")
 
 	plugins {
-		create("io.github.bitfist.github.repository") {
-			id = "io.github.bitfist.github.repository"
+		create("io.github.bitfist.gradle-github-support.repository") {
+			id = "io.github.bitfist.gradle-github-support.repository"
 			implementationClass = "io.github.bitfist.github.repository.GitHubRepositoriesPlugin"
 			version = project.version.toString()
 			description = "Gradle plugin to support GitHub package repositories"
@@ -91,8 +91,8 @@ gradlePlugin {
 			// Note: tags cannot include "plugin" or "gradle" when publishing
 			tags.set(listOf("GitHub", "Repository", "Maven"))
 		}
-		create("io.github.bitfist.github.release") {
-			id = "io.github.bitfist.github.release"
+		create("io.github.bitfist.gradle-github-support.release") {
+			id = "io.github.bitfist.gradle-github-support.release"
 			implementationClass = "io.github.bitfist.github.release.GitHubReleasePlugin"
 			version = project.version.toString()
 			description = "Gradle plugin to release to a GitHub package repository"
@@ -107,7 +107,7 @@ publishing {
 	publications {
 		register<MavenPublication>("pluginMaven") {
 			groupId = project.group.toString()
-			artifactId = "github-gradle-support"
+			artifactId = "gradle-github-support"
 			version = versionToUse
 
 			pom {

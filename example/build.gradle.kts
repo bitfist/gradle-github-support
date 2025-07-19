@@ -4,8 +4,8 @@ import java.net.URI
 plugins {
     java
 //	`java-gradle-plugin`
-	id("io.github.bitfist.github.release")
-	id("io.github.bitfist.github.repository")
+	id("io.github.bitfist.gradle-github-support.release")
+	id("io.github.bitfist.gradle-github-support.repository")
 }
 
 group = "test"
