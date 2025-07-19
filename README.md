@@ -1,6 +1,7 @@
-![Gradle Plugin](https://img.shields.io/static/v1?label=Gradle&message=Plugin&color=6DB33F&logo=gradle)
-![GitHub Release Plugin](https://img.shields.io/static/v1?label=GitHub&message=Release&color=24292e&logo=github)
-[![Gradle build](https://github.com/bitfist/gradle-github-support/actions/workflows/test.yml/badge.svg)](https://github.com/bitfist/os-conditions-spring-boot-starter/actions/workflows/test.yml)
+![Gradle Plugin](https://img.shields.io/static/v1?label=Gradle&message=Plugin&color=blue&logo=gradle)
+![GitHub Release Plugin](https://img.shields.io/static/v1?label=GitHub&message=Release&color=blue&logo=github)
+![License](https://img.shields.io/badge/License-Apache%20License%20Version%202.0-blue)
+[![Gradle build](https://github.com/bitfist/gradle-github-support/actions/workflows/test.yml/badge.svg)](https://github.com/bitfist/gradle-github-support/actions/workflows/test.yml)
 ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
 
