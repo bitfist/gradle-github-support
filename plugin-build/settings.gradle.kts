@@ -18,4 +18,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(":github")
+include(":gradle-github-support")

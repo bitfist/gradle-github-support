@@ -157,6 +157,8 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 	}
 
 	private fun configurePublication(project: Project, extension: GitHubReleaseExtension) {
+		val hasJavaGradlePlugin = project.pluginManager.hasPlugin("java-gradle-plugin")
+
 		project.pluginManager.apply("maven-publish")
 		val publishing = project.extensions.getByType(PublishingExtension::class.java)
 		publishing.repositories { repositories ->
@@ -176,7 +178,7 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 				}
 			}
 		}
-		if (project.pluginManager.hasPlugin("java-gradle-plugin")) {
+		if (hasJavaGradlePlugin) {
 			publishing.publications.register("pluginMaven", MavenPublication::class.java) { publication ->
 				configurePublication(publication, extension)
 			}
@@ -197,6 +199,14 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 					developers.developer { developer ->
 						developer.id.set(extension.developer.get())
 						developer.name.set(extension.developer.get())
+					}
+				}
+				pom.licenses { licenses ->
+					if (extension.license.isPresent && extension.licenseUri.isPresent) {
+						licenses.license { license ->
+							license.name.set(extension.license.get())
+							license.url.set(extension.licenseUri.get().toString())
+						}
 					}
 				}
 			}

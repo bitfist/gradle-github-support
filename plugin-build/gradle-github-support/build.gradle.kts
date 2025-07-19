@@ -105,9 +105,7 @@ gradlePlugin {
 
 publishing {
 	publications {
-		register<MavenPublication>("main") {
-			from(components["java"])
-
+		register<MavenPublication>("pluginMaven") {
 			groupId = project.group.toString()
 			artifactId = "github-gradle-support"
 			version = versionToUse
