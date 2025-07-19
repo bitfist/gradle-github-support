@@ -47,5 +47,5 @@ jobs:
       - name: Create GitHub release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "plugin-build/github/build/libs/*.jar"
+          artifacts: "plugin-build/gradle-github-support/build/libs/*.jar"
           tag: ${{ env.RELEASE_VERSION }}

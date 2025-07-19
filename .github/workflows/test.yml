@@ -5,8 +5,8 @@ on:
     paths:
       - '.github/**'
       - 'plugin-build/*.gradle.kts'
-      - 'plugin-build/github/src/**'
-      - 'plugin-build/github/*.gradle.kts'
+      - 'plugin-build/gradle-github-support/src/**'
+      - 'plugin-build/gradle-github-support/*.gradle.kts'
       - 'plugin-build/gradle/**'
       - 'plugin-build/gradlew*'
       - 'gradle/**'
@@ -17,8 +17,8 @@ on:
     paths:
       - '.github/**'
       - 'plugin-build/*.gradle.kts'
-      - 'plugin-build/github/src/**'
-      - 'plugin-build/github/*.gradle.kts'
+      - 'plugin-build/gradle-github-support/src/**'
+      - 'plugin-build/gradle-github-support/*.gradle.kts'
       - 'plugin-build/gradle/**'
       - 'plugin-build/gradlew*'
       - 'gradle/**'
@@ -54,7 +54,7 @@ jobs:
         uses: cicirello/jacoco-badge-generator@v2
         with:
           generate-branches-badge: true
-          jacoco-csv-file: plugin-build/github/build/reports/jacoco/test/jacocoTestReport.csv
+          jacoco-csv-file: plugin-build/gradle-github-support/build/reports/jacoco/test/jacocoTestReport.csv
       - name: Update badges (if changed)
         run: |
           if [[ `git status --porcelain` ]]; then
