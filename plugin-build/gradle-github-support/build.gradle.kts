@@ -88,7 +88,6 @@ gradlePlugin {
 			version = project.version.toString()
 			description = "Gradle plugin to support GitHub package repositories"
 			displayName = "Gradle plugin to support GitHub package repositories"
-			// Note: tags cannot include "plugin" or "gradle" when publishing
 			tags.set(listOf("GitHub", "Repository", "Maven"))
 		}
 		create("io.github.bitfist.gradle-github-support.release") {
@@ -97,7 +96,6 @@ gradlePlugin {
 			version = project.version.toString()
 			description = "Gradle plugin to release to a GitHub package repository"
 			displayName = "Gradle plugin to release to a GitHub package repository"
-			// Note: tags cannot include "plugin" or "gradle" when publishing
 			tags.set(listOf("GitHub", "Release", "Repository", "Maven"))
 		}
 	}
@@ -106,8 +104,6 @@ gradlePlugin {
 publishing {
 	publications {
 		register<MavenPublication>("pluginMaven") {
-			groupId = project.group.toString()
-			artifactId = "gradle-github-support"
 			version = versionToUse
 
 			pom {
