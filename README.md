@@ -5,19 +5,50 @@
 ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
 
+# Gradle GitHub support
+
+This plugin intends to ease the use of GitHub in Gradle.
+
+❌ Remember to set your GitHub user `GPR_USER` and GitHub Access Token `GPR_KEY` with repository rights in
+`~/.gradle/gradle.properties`
+
+---
+
+Table of contents
+=================
+
+* [Features](#-features)
+* [Usage examples](#-usage-examples)
+  * [Setup](#setup)
+  * [GitHub Release Plugin](#github-release-plugin)
+  * [GitHub Repositories Plugin](#github-repositories-plugin)
+* [Plugin Properties](#-plugin-properties)
+* [Environment Variables](#-environment-variables)
+* [Gradle Properties](#-gradle-properties)
+
+---
+
 ## ✨ Features
 
-- **Automatic Release Management**: Configures GitHub Release tasks, ensuring your project is versioned and released according to semantic versioning rules based on Git tags and conventional commit messages.
+- **Automatic Release Management**: Configures GitHub Release tasks, ensuring your project is versioned and released
+  according to semantic versioning rules based on Git tags and conventional commit messages.
 - **Semantic Versioning**: Integrates with the Git-Semver plugin to compute versions automatically.
-- **Changelog Generation**: Produces a formatted changelog, grouping commits by type (features, fixes, breaking changes) and linking to the corresponding GitHub commits.
-- **Code Quality Gates**: Enforces test and code coverage thresholds by making Release tasks depend on test and Jacoco report tasks.
-- **Maven Publication**: Publishes artifacts and metadata (including sources and Javadoc) to GitHub Packages or any Maven repository, with credentials and repository URL configurable via extension properties.
-- **License Management**: Offers a `copyLicense` task to include your project's license file in the built resources automatically.
-- **Repository Convenience**: Provides a `gitHub("owner/repo")` shortcut for adding GitHub Package repositories, handling authentication via Gradle properties or environment variables.
+- **Changelog Generation**: Produces a formatted changelog, grouping commits by type (features, fixes, breaking changes)
+  and linking to the corresponding GitHub commits.
+- **Code Quality Gates**: Enforces test and code coverage thresholds by making Release tasks depend on test and Jacoco
+  report tasks.
+- **Maven Publication**: Publishes artifacts and metadata (including sources and Javadoc) to GitHub Packages or any
+  Maven repository, with credentials and repository URL configurable via extension properties.
+- **License Management**: Offers a `copyLicense` task to include your project's license file in the built resources
+  automatically.
+- **Repository Convenience**: Provides a `gitHub("owner/repo")` shortcut for adding GitHub Package repositories,
+  handling authentication via Gradle properties or environment variables.
+
+---
 
 ## 🚀 Usage Examples
 
-## Setup
+### Setup
 
 Use the Gradle plugin DSL in `settings.gradle.kts`:
 
@@ -89,14 +120,14 @@ repositories {
 
 ## 📋 Plugin Properties
 
-| Property                       | Plugin                              | Type      | Default                              | Description                                         |
-|--------------------------------|-------------------------------------|-----------|--------------------------------------|-----------------------------------------------------|
-| `repository`                   | Release (`gitHubRelease`)           | String    | `GITHUB_REPOSITORY` env var          | GitHub repo in `owner/repo` format                  |
-| `user`                         | Release                             | String    | `GITHUB_ACTOR` env var               | GitHub username for authentication                  |
-| `token`                        | Release                             | String    | `GITHUB_TOKEN` env var               | GitHub token for API access and publishing          |
-| `projectName`                  | Release                             | String    | —                                    | Name to set in POM                                  |
-| `projectDescription`           | Release                             | String    | —                                    | Description to set in POM                           |
-| `developer`                    | Release                             | String    | —                                    | Developer ID/name for POM                           |
+| Property             | Plugin                    | Type   | Default                     | Description                                |
+|----------------------|---------------------------|--------|-----------------------------|--------------------------------------------|
+| `repository`         | Release (`gitHubRelease`) | String | `GITHUB_REPOSITORY` env var | GitHub repo in `owner/repo` format         |
+| `user`               | Release                   | String | `GITHUB_ACTOR` env var      | GitHub username for authentication         |
+| `token`              | Release                   | String | `GITHUB_TOKEN` env var      | GitHub token for API access and publishing |
+| `projectName`        | Release                   | String | —                           | Name to set in POM                         |
+| `projectDescription` | Release                   | String | —                           | Description to set in POM                  |
+| `developer`          | Release                   | String | —                           | Developer ID/name for POM                  |
 
 ## 🌐 Environment Variables
 
