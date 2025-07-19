@@ -65,6 +65,8 @@ gitHubRelease {
 	projectDescription.set("An awesome project release")
 	developer.set("your-github-username")
 	licenseFile.set(file("path/to/file"))
+	license.set("The Apache License, Version 2.0")
+	licenseUri.set(URI("https://www.apache.org/licenses/LICENSE-2.0"))
 }
 ```
 
