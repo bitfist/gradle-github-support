@@ -49,7 +49,7 @@ jobs:
       # Job
       - name: Test
         run: |
-          ./gradlew :plugin-build:github:test :plugin-build:github:jacocoTestReport
+          ./gradlew :plugin-build:gradle-github-support:test :plugin-build:gradle-github-support:jacocoTestReport
       - name: Generate JaCoCo Badge
         uses: cicirello/jacoco-badge-generator@v2
         with:

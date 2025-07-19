@@ -30,20 +30,20 @@ jobs:
           cache-read-only: false
       # Job
       - name: Run tests
-        run: ./gradlew :plugin-build:github:test
+        run: ./gradlew :plugin-build:gradle-github-support:test
       - name: Create release tag & changelog
         run: |
-          ./gradlew :plugin-build:github:releaseVersion --no-commit
+          ./gradlew :plugin-build:gradle-github-support:releaseVersion --no-commit
           git push origin --tags
           echo "RELEASE_VERSION=$(git tag --points-at HEAD)" >> $GITHUB_ENV
       - name: Build JAR
         run: |
-          ./gradlew :plugin-build:github:clean
-          ./gradlew :plugin-build:github:build :plugin-build:github:jar
+          ./gradlew :plugin-build:gradle-github-support:clean
+          ./gradlew :plugin-build:gradle-github-support:build :plugin-build:gradle-github-support:jar
       - name: Publish Maven artifacts to GitHub Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew :plugin-build:github:publishAllPublicationsToGitHubPackagesRepository
+        run: ./gradlew :plugin-build:gradle-github-support:publishAllPublicationsToGitHubPackagesRepository
       - name: Create GitHub release
         uses: ncipollo/release-action@v1
         with:
