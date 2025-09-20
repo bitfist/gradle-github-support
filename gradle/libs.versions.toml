@@ -2,7 +2,7 @@
 kotlin  = "2.2.20"
 junit5  = "5.13.4"
 semver  = "0.16.1"
-mockito = "5.19.0"
+mockito = "5.20.0"
 mockitoKotlin = "6.0.0"
 
 [plugins]
