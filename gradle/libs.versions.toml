@@ -3,7 +3,7 @@ kotlin  = "2.2.20"
 junit5  = "6.0.0"
 semver  = "0.16.1"
 mockito = "5.20.0"
-mockitoKotlin = "6.0.0"
+mockitoKotlin = "6.1.0"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm",              version.ref = "kotlin" }
