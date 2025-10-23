@@ -1,5 +1,5 @@
 [versions]
-kotlin  = "2.2.20"
+kotlin  = "2.2.21"
 junit5  = "6.0.0"
 semver  = "0.16.1"
 mockito = "5.20.0"
