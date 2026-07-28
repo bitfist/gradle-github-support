@@ -1,7 +1,7 @@
 [versions]
 kotlin  = "2.4.10"
 junit5  = "6.1.2"
-semver  = "0.19.3"
+semver  = "0.19.5"
 mockito = "5.23.0"
 mockitoKotlin = "6.3.0"
 
